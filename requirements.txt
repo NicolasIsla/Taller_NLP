@@ -3,6 +3,5 @@ opencv-python-headless
 numpy
 easyocr
 Pillow
-transformers
 pysentimiento
 spanlp
