@@ -9,15 +9,15 @@ from pysentimiento import create_analyzer
 # transformer
 from spanlp.palabrota import Palabrota
 
-
-
 #title
-st.title("Prueba de funcionamiento del modelo de detección")
+st.title("Prueba de funcionamiento del modelo")
 
 #subtitle
 st.markdown("## Detección y analisís")
 
-st.markdown("## Inserte descripción del modelo")
+st.markdown("#### Modelo que permite detectar y analizar texto en imágenes, enfocado en la detección de bullying.")
+st.markdown("##### Utilizando las librerías EasyOCR para la detección de texto, PySentimiento para el análisis de sentimientos y Spanlp para la detección de garabatos.")
+
 #st.markdown("")
 
 #image uploader
@@ -78,7 +78,7 @@ if image is not None:
     input_image = Image.open(image) #read image
     st.image(input_image) #display image
 
-    with st.spinner("AI is at Work! "):
+    with st.spinner("Procesando..."):
         result = reader.readtext(np.array(input_image))
 
         
@@ -95,7 +95,7 @@ if image is not None:
 
         palabrotas, sentido, odio, emocion = model.predict(result_text)
 
-        st.markdown("### Resultados")
+        st.markdown("## Resultados")
 
         st.markdown(f'#### Contiene garabatos {palabrotas}')
 
@@ -110,13 +110,10 @@ if image is not None:
         st.markdown(f'#### Odio')
         for llave in odio.probas.keys():
             st.markdown(f'Discurso de Odio: {llave}, probabilidad: {odio.probas[llave]:.3f}')
-
-        
-
         
     #st.success("Here you go!")
-    st.balloons()
-    st.snow()
+    # st.balloons()
+    # st.snow()
 
 else:
     st.write("Upload an Image")
